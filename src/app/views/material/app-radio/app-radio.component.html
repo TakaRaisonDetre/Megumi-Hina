@@ -1,0 +1,28 @@
+<mat-card class="p-0">
+  <mat-card-title class="m-0">
+    <div class="card-title-text">
+      <span>Radio button</span>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    <p class="mt-1">Simple Radio buttons</p>
+
+    <mat-radio-group fxLayout="column" class="mb-1">
+      <mat-radio-button [style.marginBottom]="'.5rem'" value="1">Option 1</mat-radio-button>
+      <mat-radio-button [style.marginBottom]="'.5rem'" value="2">Option 2</mat-radio-button>
+    </mat-radio-group>
+
+    
+    <p>Radios with ngModel</p>
+    <mat-radio-group fxLayout="column" [(ngModel)]="selectedSeason">
+      <mat-radio-button 
+      [style.marginBottom]="'.5rem'" 
+      *ngFor="let season of seasons" 
+      [value]="season">
+        {{season}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <div class="mt-1">Your favorite season is: {{selectedSeason}}</div>
+  </mat-card-content>
+</mat-card>

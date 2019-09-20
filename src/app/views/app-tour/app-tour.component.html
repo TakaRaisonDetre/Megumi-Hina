@@ -1,0 +1,55 @@
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="50">
+    <mat-card class="default">
+      <mat-card-title>Example User Tour</mat-card-title>
+      <mat-card-subtitle>Click this button to start a demo Tour.</mat-card-subtitle>
+      <mat-card-content>
+        <button 
+        color="primary" 
+        mat-raised-button
+        (click)="startTour()">Start Tour</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="50">
+    <mat-card class="default" id="areaOne">
+      <mat-card-title class="m-0">Define your steps</mat-card-title>
+      <mat-card-content>
+        <pre>
+        <code [style.display]="'block'">steps = {{
+        {
+          id: 'demo-tour', 
+          showPrevButton: true, 
+          steps: [
+            {
+              title: 'Step one',
+              content: 'This is step description.',
+              target: 'areaOne',
+              placement: 'left',
+              xOffset: 10
+            },
+            {
+              title: 'Step Two',
+              content: 'This is step description.',
+              target: 'areaTwo',
+              placement: 'left',
+              xOffset: 15
+            }
+          ]
+        } | json}}
+        </code>
+        </pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="50">
+    <mat-card class="default" id="areaTwo">
+      <mat-card-title>Initialize tour</mat-card-title>
+      <mat-card-content>
+        <code [style.display]="'block'">
+          hopscotch.startTour(this.steps)
+        </code>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">Grids</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="Fixed Height">
+        <br>
+        <mat-grid-list cols="4" rowHeight="100px">
+          <mat-grid-tile
+              *ngFor="let fg of gridFixedHeight"
+              [colspan]="fg.cols"
+              [rowspan]="fg.rows"
+              [style.background]="fg.color"
+              [style.color]="'#ffffff'">
+            {{fg.text}}
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="Ratio Height">
+        <br>
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile
+          *ngFor="let rg of gridRatioHeight"
+          [style.background]="'#607d8b'"
+          [style.color]="'#ffffff'" >{{rg}}</mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

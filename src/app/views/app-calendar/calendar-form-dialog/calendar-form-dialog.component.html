@@ -1,0 +1,125 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">{{dialogTitle}}</span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-1 m-0">
+
+    <form name="eventForm" [formGroup]="eventForm" class="event-form" fxFlex>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+        <div fxFlex="100">
+          <mat-form-field class="full-width">
+            <input 
+            matInput 
+            name="title" 
+            formControlName="title" 
+            placeholder="Title" 
+            required>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="column" fxFlex="100" formGroupName="color">
+          <mat-form-field fxFlex>
+            <input 
+            matInput 
+            class="color-picker-input" 
+            name="primaryColor" 
+            formControlName="primary" 
+            placeholder="Primary color" 
+            [(colorPicker)]="event.color.primary"
+            [style.background]="event.color.primary" 
+            (colorPickerChange)="eventForm.patchValue({color:{primary: event.color.primary}})"
+            />
+          </mat-form-field>
+          <span fxFlex="16px"></span>
+
+          <mat-form-field fxFlex>
+            <input 
+            matInput 
+            class="color-picker-input" 
+            name="secondaryColor" 
+            formControlName="secondary" 
+            placeholder="Secondary color"
+            [(colorPicker)]="event.color.secondary" 
+            [style.background]="event.color.secondary" 
+            (colorPickerChange)="eventForm.patchValue({color:{secondary: event.color.secondary}})"
+            />
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="column" fxFlex="100">
+          <mat-form-field fxFlex>
+            <input 
+            matInput 
+            [matDatepicker]="startDateDP" 
+            placeholder="Start Date" 
+            name="startDate" 
+            formControlName="start">
+            <mat-datepicker-toggle matSuffix [for]="startDateDP"></mat-datepicker-toggle>
+            <mat-datepicker #startDateDP></mat-datepicker>
+          </mat-form-field>
+          <span fxFlex="16px"></span>
+
+          <mat-form-field fxFlex>
+            <input 
+            matInput 
+            [matDatepicker]="endDateDP" 
+            placeholder="End Date" 
+            name="endDate" 
+            formControlName="end">
+            <mat-datepicker-toggle matSuffix [for]="endDateDP"></mat-datepicker-toggle>
+            <mat-datepicker #endDateDP></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="column" fxFlex="100">
+          <mat-form-field formGroupName="meta" class="">
+            <input 
+            matInput 
+            name="location" 
+            formControlName="location" 
+            placeholder="Location">
+          </mat-form-field>
+
+          <mat-form-field formGroupName="meta" class="">
+            <textarea 
+            matInput 
+            formControlName="notes" 
+            placeholder="Notes" 
+            max-rows="4">
+            </textarea>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-1" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <button 
+    mat-raised-button 
+    color="primary" 
+    (click)="dialogRef.close({action: 'save', event: eventForm.value})" 
+    [disabled]="eventForm.invalid"
+    aria-label="SAVE">
+    Save
+    </button>
+
+    <button 
+    *ngIf="action ==='edit'" 
+    mat-icon-button color="warn" 
+    (click)="dialogRef.close({action: 'delete'})" 
+    aria-label="Delete"
+    matTooltip="Delete">
+      <mat-icon>delete</mat-icon>
+    </button>
+    
+  </div>
+</div>

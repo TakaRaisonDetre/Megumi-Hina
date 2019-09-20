@@ -1,0 +1,87 @@
+<div fxLayout="row wrap">
+  <div fxFlex="100" fxFlex.gt-sm="33">
+    <mat-card class="p-0">
+      <mat-card-title class="m-0">
+        <div class="card-title-text">Basic</div>
+        <mat-divider></mat-divider>
+      </mat-card-title>
+      <mat-card-content class="p-0">
+        <agm-map 
+        [ngStyle]="{height: '400px'}"
+        [zoom]="zoom" 
+        [latitude]="mapCenter.lat" 
+        [longitude]="mapCenter.lng"></agm-map>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-sm="33">
+    <mat-card class="p-0">
+      <mat-card-title class=" m-0">
+        <div class="card-title-text">Polyline</div>
+        <mat-divider></mat-divider>
+      </mat-card-title>
+      <mat-card-content class="p-0">
+        <agm-map 
+        [ngStyle]="{height: '400px'}"
+        [zoom]="zoom" 
+        [latitude]="mapCenter.lat" 
+        [longitude]="mapCenter.lng">
+          <agm-polyline strokeColor="#247ba0 ">
+            <agm-polyline-point *ngFor="let point of polylinePoints" [latitude]="point.lat" [longitude]="point.lng"></agm-polyline-point>
+          </agm-polyline>
+        </agm-map>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="100" fxFlex.gt-sm="33">
+    <mat-card class="p-0">
+      <mat-card-title class=" m-0">
+        <div class="card-title-text">Info Window</div>
+        <mat-divider></mat-divider>
+      </mat-card-title>
+      <mat-card-content class="p-0">
+        <agm-map 
+        [ngStyle]="{height: '400px'}"
+        [zoom]="zoom" 
+        [latitude]="mapCenter.lat" 
+        [longitude]="mapCenter.lng">
+        <agm-marker [latitude]="mapCenter.lat" [longitude]="mapCenter.lng" [label]="'BD'">
+          <agm-info-window [disableAutoPan]="true" [isOpen]="true">
+            <p><strong>Country:</strong> Bangladesh</p>
+            <p><strong>Birth date:</strong> 16 December, 1971</p>
+          </agm-info-window>
+        </agm-marker>
+        </agm-map>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="100" fxFlex.gt-sm="33">
+    <mat-card class="p-0">
+      <mat-card-title class=" m-0">
+        <div class="card-title-text">Circle<span fxFlex></span>
+        <small>Radius: {{circleMapRadius / 1000}} km</small></div>
+        <mat-divider></mat-divider>
+      </mat-card-title>
+      <mat-card-content class="p-0">
+        <agm-map 
+        [ngStyle]="{height: '400px'}"
+        [zoom]="zoom" 
+        [latitude]="mapCenter.lat" 
+        [longitude]="mapCenter.lng">
+        <agm-circle 
+        [latitude]="mapCenter.lat" 
+        [longitude]="mapCenter.lng" 
+        [radius]="circleMapRadius"
+        [editable]="true"
+        [strokeColor]="'#000'"
+        [strokeWeight]="'3px'"
+        (radiusChange)="circleMapRadiusChange($event)">
+        </agm-circle>
+        </agm-map>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+</div>

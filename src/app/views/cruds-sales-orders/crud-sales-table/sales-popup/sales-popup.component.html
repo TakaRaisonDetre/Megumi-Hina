@@ -1,0 +1,77 @@
+
+<h1 matDialogTitle>{{data.title}}</h1>
+
+<form [formGroup]="itemForm" (ngSubmit)="salesOrderSubmit()">
+<div fxLayout="row wrap" fxLayout.lt-sm="column">
+ 
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field>
+      <mat-label>顧客名称</mat-label>
+      <mat-select  [formControl]="itemForm.controls['client']">
+        <mat-option *ngFor="let c of client" [value]="c.value">
+          {{c.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+     <!-- Date title -->
+     <div fxLayout="row" fxLayout.lt-sm="column" fxFlex="100">
+      <mat-form-field fxFlex>
+        <input 
+        matInput 
+        [matDatepicker]="startDateDP" 
+        placeholder="受注日" 
+        name="startDate" 
+        formControlName="start"
+        [formControl]="itemForm.controls['orderDate']">
+        <mat-datepicker-toggle matSuffix [for]="startDateDP"></mat-datepicker-toggle>
+        <mat-datepicker #startDateDP></mat-datepicker>
+      </mat-form-field>
+      <span fxFlex="16px"></span>
+
+      <mat-form-field fxFlex>
+        <input 
+        matInput 
+        [matDatepicker]="endDateDP" 
+        placeholder="希望納品日" 
+        name="endDate" 
+        formControlName="end"
+        [formControl]="itemForm.controls['deliveryDeadline']">
+        <mat-datepicker-toggle matSuffix [for]="endDateDP"></mat-datepicker-toggle>
+        <mat-datepicker #endDateDP></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+
+  
+
+
+
+  <div fxFlex="50"  class="pr-1">
+    <mat-form-field class="full-width">
+      <input
+      matInput
+      name="description"
+      [formControl]="itemForm.controls['description']"
+      placeholder="記述">
+    </mat-form-field>
+  </div>
+  <div fxFlex="50"  class="pt-1 pr-1">
+    <mat-slide-toggle 
+    matInput
+    name="isNew"
+    [formControl]="itemForm.controls['isNew']">完了</mat-slide-toggle>
+  </div>
+
+
+
+
+  <div fxFlex="100" class="mt-1">
+    <button mat-raised-button color="primary" [disabled]="itemForm.invalid">保存</button>
+    <span fxFlex></span>
+    <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">キャンセル</button>
+  </div>
+</div>
+</form>

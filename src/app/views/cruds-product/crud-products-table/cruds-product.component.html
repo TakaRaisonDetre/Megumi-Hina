@@ -1,0 +1,63 @@
+<div class="m-333">
+  <!-- <span fxFlex></span> -->
+  <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp({}, true)">登録</button>
+</div>
+
+<!-- 新規登録・修正モーダル -->
+<mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
+  <mat-card-content class="p-0">
+    <ngx-datatable 
+          class="material ml-0 mr-0"
+          [rows]="items"
+          [columnMode]="'flex'"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [limit]="5"
+          [rowHeight]="'auto'">
+          <ngx-datatable-column [hidden] name="商品写真とコード" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+              <img style="width:100px;height:100px" mat-card-image [src]="row?.downloadURL || '../../../assets/images/mock-logo-2.png'">
+              </ng-template>
+            </ngx-datatable-column>
+          <ngx-datatable-column name="商品名" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+             　商品ID　{{ row?.id  }} 
+              （{{ row?.size }}号 
+              　{{ row?.name }}）
+            </ng-template>
+          </ngx-datatable-column>
+        
+          <ngx-datatable-column name="記述" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.description}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="販売価格" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.price | currency : 'JPY': true}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="色味属性" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.color }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="新・既存" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <mat-chip mat-sm-chip [color]="'primary'" [selected]="row.isActive">{{row.isNew ? 'サンプル新商材' : '既存商材'}}</mat-chip>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="写真・追加・削除" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="openPhoneUp(row)"><mat-icon>photo</mat-icon></button>
+              <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="openPopUp(row)"><mat-icon>edit</mat-icon></button>
+              <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="navigatetoKey(row)"><mat-icon>view_quilt</mat-icon></button>
+              <button mat-icon-button mat-sm-button color="warn" (click)="deleteItem(row)"><mat-icon>delete</mat-icon></button>
+            </ng-template>
+          </ngx-datatable-column>
+          <mat-divider></mat-divider>
+        </ngx-datatable>
+      
+  </mat-card-content>
+</mat-card>
+

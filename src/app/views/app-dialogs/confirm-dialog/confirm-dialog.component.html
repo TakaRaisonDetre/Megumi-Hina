@@ -1,0 +1,30 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">
+      <span>Confirm Dialog</span>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    <div class="pb-1">
+        <mat-form-field class="full-width">
+            <input
+            matInput
+            name="title"
+            placeholder="Title"
+            [(ngModel)]="title">
+        </mat-form-field>
+    </div>
+    <div class="pb-1">
+        <mat-form-field class="full-width">
+            <input
+            matInput
+            name="text"
+            placeholder="Text"
+            [(ngModel)]="text">
+        </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" (click)="openDialog()" class="mb-1">Open dialog</button>
+    <p>You selected: {{selectedOption}}</p>
+  </mat-card-content>
+</mat-card>

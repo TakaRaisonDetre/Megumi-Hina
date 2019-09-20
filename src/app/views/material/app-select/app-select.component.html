@@ -1,0 +1,20 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">
+      <span>Dropdown select</span>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    
+    <form class="pt-1">
+        <mat-select id="langToggle" placeholder="" [(ngModel)]="selectedValue" name="food" class="mb-1">
+          <mat-option *ngFor="let food of foods" [value]="food.value" ngDefaultControl>
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+        <p> Selected value: {{selectedValue}} </p>
+    </form>
+
+  </mat-card-content>
+</mat-card>

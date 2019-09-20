@@ -1,0 +1,121 @@
+
+<h1 matDialogTitle>{{data.title}}</h1>
+
+  <form [formGroup]="itemForm" (ngSubmit)="ProductSubmit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+   
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field>
+        <mat-label>商品大項目</mat-label>
+        <mat-select  [formControl]="itemForm.controls['categories']">
+          <mat-option *ngFor="let cat of categories" [value]="cat.value">
+            {{cat.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+    </div>
+
+  
+  
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="name"
+        [formControl]="itemForm.controls['name']"
+        placeholder="商品名">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type="number"
+        name="size"
+        [formControl]="itemForm.controls['size']"
+        placeholder="号数">
+      </mat-form-field>
+    </div>
+
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="description"
+        [formControl]="itemForm.controls['description']"
+        placeholder="記述">
+      </mat-form-field>
+    </div>
+    <div fxFlex="50"  class="pt-1 pr-1">
+      <mat-slide-toggle 
+      matInput
+      name="isNew"
+      [formControl]="itemForm.controls['isNew']">新商品サンプル？</mat-slide-toggle>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="price"
+        type="number"
+        [formControl]="itemForm.controls['price']"
+        placeholder="商品価格">
+      </mat-form-field>
+    </div>
+
+　<!-- 人件費 -->
+<mat-divider></mat-divider>
+
+<div fxFlex="50"  class="pr-1">
+  <mat-form-field class="full-width">
+    <input
+    matInput
+    name="makie_artist"
+    [formControl]="itemForm.controls['makie_artist']"
+    placeholder="蒔絵師名">
+  </mat-form-field>
+</div>
+
+<div fxFlex="50"  class="pr-1">
+  <mat-form-field class="full-width">
+    <input
+    matInput
+    name="makie_cost"
+    type="number"
+    [formControl]="itemForm.controls['makie_cost']"
+    placeholder="蒔絵コスト">
+  </mat-form-field>
+</div>
+
+<div fxFlex="50"  class="pr-1">
+  <mat-form-field class="full-width">
+    <input
+    matInput
+    name="coloring_vender"
+    [formControl]="itemForm.controls['coloring_vender']"
+    placeholder="塗装業者">
+  </mat-form-field>
+</div>
+
+<div fxFlex="50"  class="pr-1">
+  <mat-form-field class="full-width">
+    <input
+    matInput
+    name="coloring_cost"
+    type="number"
+    [formControl]="itemForm.controls['coloring_cost']"
+    placeholder="塗装コスト">
+  </mat-form-field>
+</div>
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="itemForm.invalid">保存</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">キャンセル</button>
+    </div>
+  </div>
+  </form>

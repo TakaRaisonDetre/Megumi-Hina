@@ -1,0 +1,78 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+
+  <form [formGroup]="itemForm" (ngSubmit)="InfoSubmit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="name"
+        [formControl]="itemForm.controls['name']"
+        placeholder="生地名称">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type="number"
+        name="size"
+        [formControl]="itemForm.controls['size']"
+        placeholder="号数">
+      </mat-form-field>
+    </div>
+
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="description"
+        [formControl]="itemForm.controls['description']"
+        placeholder="記述">
+      </mat-form-field>
+    </div>
+    
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="vendor"
+        [formControl]="itemForm.controls['vendor']"
+        placeholder="仕入れ元業者名">
+      </mat-form-field>
+    </div>
+    
+    
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type=number
+        name="item_cost"
+        [formControl]="itemForm.controls['item_cost']"
+        placeholder="生地仕入価格">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="original_color"
+        [formControl]="itemForm.controls['original_color']"
+        placeholder="塗装前の色">
+      </mat-form-field>
+    </div>
+
+  
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="itemForm.invalid">保存</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">キャンセル</button>
+    </div>
+  </div>
+  </form>

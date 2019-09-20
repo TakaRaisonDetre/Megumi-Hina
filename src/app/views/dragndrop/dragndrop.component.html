@@ -1,0 +1,36 @@
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex="100" fxFlex.gt-xs="50">
+    <mat-card class="p-0">
+      <mat-card-title class="">
+        <div class="card-title-text">Drag and drop</div>
+        <mat-divider></mat-divider>
+      </mat-card-title>
+      <mat-card-content>
+        <mat-list [dragula]='"bag-one"' [dragulaModel]='folders'>
+          <mat-list-item *ngFor="let folder of folders" class="mb-1 dnd-item">
+            <div fxFlex="row" fxLayoutWrap="wrap">
+              <mat-icon mat-list-icon [color]="folder.color || 'primary'" class="mr-1 icon-circle">folder</mat-icon>
+              <div fxFlex="column">
+                <h4 matLine class="m-0 font-normal fz-1">{{folder.name}}</h4>
+                <p matLine class="m-0"> {{folder.updated | date}} </p>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="100" fxFlex.gt-xs="50">
+    <mat-card class="p-0">
+      <mat-card-title class="">
+        <div class="card-title-text">Data model in component</div>
+        <mat-divider></mat-divider>
+      </mat-card-title>
+      <mat-card-content>
+        <pre><code [style.display]="'block'">{{folders | json}}</code></pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

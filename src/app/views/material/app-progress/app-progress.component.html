@@ -1,0 +1,49 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">Progress</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    <div class="pb-1">
+      <h6>Progress Spinner</h6>
+      <p class="text-muted">Determinate</p>
+      <mat-progress-spinner
+      [color]="'primary'"
+      [mode]="'determinate'" 
+      [value]="60"></mat-progress-spinner>
+
+      <p class="text-muted pt-1">Indeterminate</p>
+      <mat-progress-spinner 
+      [color]="'primary'"
+      [mode]="'indeterminate'"></mat-progress-spinner>
+    </div>
+
+    <div class="pb-1">
+      <h6>Progress Bar</h6>
+      <p class="text-muted">Determinate</p>
+      <mat-progress-bar
+      [mode]="'determinate'"
+      [value]="60">
+      </mat-progress-bar>
+
+      <p class="text-muted pt-1">Buffer</p>
+      <mat-progress-bar
+      [mode]="'buffer'"
+      [value]="40"
+      [bufferValue]="70">
+      </mat-progress-bar>
+
+      <p class="text-muted pt-1">Indeterminate</p>
+      <mat-progress-bar
+      [mode]="'indeterminate'">
+      </mat-progress-bar>
+
+      <p class="text-muted pt-1">Query</p>
+      <mat-progress-bar
+      [mode]="'query'">
+      </mat-progress-bar>
+
+    </div>
+    
+  </mat-card-content>
+</mat-card>

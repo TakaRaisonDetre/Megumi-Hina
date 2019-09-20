@@ -1,0 +1,57 @@
+<div class="m-333">
+  <!-- <span fxFlex></span> -->
+  <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp({}, true)">顧客発注書登録</button>
+</div>
+
+<!-- 新規登録・修正モーダル -->
+<mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
+  <mat-card-content class="p-0">
+    <ngx-datatable 
+          class="material ml-0 mr-0"
+          [rows]="items"
+          [columnMode]="'flex'"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [limit]="5"
+          [rowHeight]="'auto'">
+       
+          <ngx-datatable-column name="発注書ID" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+             　発注書ID　{{ row?.id  }} 
+              
+            </ng-template>
+          </ngx-datatable-column>
+        
+          <ngx-datatable-column name="顧客名" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.client}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="発注日" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.orderDate.seconds * 1000 | date:'MM-dd-yyyy' }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="期待納期" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.deliveryDeadline.seconds * 1000 | date:'MM-dd-yyyy'  }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="新・既存" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <mat-chip mat-sm-chip [color]="'primary'" [selected]="row.isActive">{{row.isComplete ? '完了' : '未達'}}</mat-chip>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="写真・追加・削除" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="openPhoneUp(row)"><mat-icon>photo</mat-icon></button>
+              <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="openPopUp(row)"><mat-icon>edit</mat-icon></button>
+              <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="navigatetoKey(row)"><mat-icon>view_quilt</mat-icon></button>
+              <button mat-icon-button mat-sm-button color="warn" (click)="deleteItem(row)"><mat-icon>delete</mat-icon></button>
+            </ng-template>
+          </ngx-datatable-column>
+          <mat-divider></mat-divider>
+        </ngx-datatable>
+      
+  </mat-card-content>
+</mat-card>

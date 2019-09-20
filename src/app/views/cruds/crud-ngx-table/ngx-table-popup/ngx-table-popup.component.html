@@ -1,0 +1,60 @@
+<h1 matDialogTitle>新商品情報入力</h1>
+  <form [formGroup]="itemForm" (ngSubmit)="ProductSubmit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="name"
+        [formControl]="itemForm.controls['name']"
+        placeholder="商品名">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type="number"
+        name="size"
+        [formControl]="itemForm.controls['size']"
+        placeholder="号数">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type="photo"
+        name="photo"
+        [formControl]="itemForm.controls['photo']"
+        placeholder="商品写真">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="description"
+        [formControl]="itemForm.controls['description']"
+        placeholder="記述">
+      </mat-form-field>
+    </div>
+    <div fxFlex="50"  class="pt-1 pr-1">
+      <mat-slide-toggle 
+      matInput
+      name="isNew"
+      [formControl]="itemForm.controls['isNew']">新商品サンプル？</mat-slide-toggle>
+    </div>
+
+
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="itemForm.invalid">保存</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+  </form>

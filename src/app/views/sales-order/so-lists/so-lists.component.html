@@ -1,0 +1,150 @@
+<div>
+  <mat-sidenav-container>
+    <mat-sidenav EgretSideNavToggle class="shop-sidebar">
+      <div class="shop-filters-wrap">
+        <!-- <form [formGroup]="filterForm"> -->
+         
+              <mat-card>
+              <mat-form-field>
+                  <mat-label>商品タイプ</mat-label>
+                  <mat-select [(ngModel)]="categories"  required (click)="filterExact('categories', categories)">
+                      <mat-option value="御所篭">御所篭</mat-option>
+                      <mat-option value="三ツ揃い対鏡">三ツ揃い対鏡</mat-option>
+                      <mat-option value="三宝">三宝</mat-option>
+                      <mat-option value="貝桶">貝桶</mat-option>
+                      <mat-option value="その他">その他</mat-option>
+                  </mat-select>
+              </mat-form-field> 
+
+              <mat-checkbox>新商品</mat-checkbox>
+
+
+
+
+            　</mat-card>
+        
+      </div>
+    </mat-sidenav>
+    <div class="shop-wrap" fxLayout="row" fxLayoutWrap="wrap">
+      <!-- Filters -->
+      <!-- Right side -->
+      <div class="full-width">
+        <!-- Search Form -->
+        <div fxLayout="row" fxLayout.lt-sm="column" class="shop-top-toolbar">
+          <button mat-icon-button class="mr-1" (click)="toggleSideNav()"><mat-icon>short_text</mat-icon> </button>
+          <div class="product-search-wrap">
+            <form>
+              <input type="text" name="searchProduct" placeholder="Search product" class="product-search default-bg full-width">
+            </form>
+          </div>
+          <!-- View change buttons and cart -->
+          <span fxFlex></span>
+          <div [fxHide.lt-md]="true">
+            <button mat-icon-button [color]="viewMode === 'list-view' ? 'primary' : ''" (click)="viewMode = 'list-view'">
+              <mat-icon>format_list_bulleted</mat-icon>
+            </button>
+            <button mat-icon-button [color]="viewMode === 'grid-view' ? 'primary' : ''" (click)="viewMode = 'grid-view'">
+              <mat-icon>apps</mat-icon>
+            </button>
+          </div>
+          <span fxFlex="20px"></span>
+          <button mat-raised-button color="primary" routerLink="/shop/cart">
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+        </div>
+        <!-- Products container -->
+        <div class="product-container"
+        [ngClass]="{'list-view': viewMode === 'list-view'}">
+          <!-- Product Box -->
+          <!-- <div
+          class="product-wrap"
+          *ngFor="let product of filtered_product_type | async | paginate: { itemsPerPage: 6, currentPage: currentPage }; let i = index;"
+          [@animate]="{value:'*',params:{delay: (i*100)+'ms', y:'50px'}}"> -->
+
+          <!-- <div
+          class="product-wrap"
+          *ngFor="let product of FilteredHinaproduct | paginate: { itemsPerPage: 6, currentPage: currentPage }; let i = index;"
+          [@animate]="{value:'*',params:{delay: (i*100)+'ms', y:'50px'}}"> -->
+
+          <div
+          class="product-wrap"
+          *ngFor="let product of FilteredHinaproduct | paginate: { itemsPerPage: 6, currentPage: currentPage }; let i = index;" > 
+
+            <div class="product-inner default-bg">
+             
+              <div class="featured-img" [routerLink]="['/shop/products/', product._id]">
+                <img [src]="product.downloadURL" alt="">
+              </div>
+              <div class="info-wrap p-1">
+                <div class="main-info">
+                  <h3 class="title" [routerLink]="['/shop/products/', product._id]">{{product.name}}</h3>
+                  <p class="text-muted p-line">{{product?.description}}</p>
+                  <p class="text-muted p-line">
+                    <strong>号数:</strong> {{product?.size}}</p>
+                 
+                </div>
+                <div class="actions">
+                  <div class="price-rating">
+                   
+                    <div class="price">
+                      <span>{{product?.price | currency:'JPY'}}</span>
+                      <!-- <del class="text-muted">{{product?.price?.previous | currency:'USD'}}</del> -->
+                    </div>
+
+                  </div>
+                  <div class="add-to-cart">
+                    <span fxFlex></span>
+                    <button mat-icon-button (click)="addToCart(product)">
+                      <mat-icon>add_shopping_cart</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Visible when viewMode === list-view -->
+              <div class="more-info-wrap p-1" *ngIf="viewMode === 'list-view'">
+                <div class="more-info">
+                  <div class="more-actions mb-1">
+                    <div class="product-rating">
+                      <star-rating-comp [starType]="'svg'" [readOnly]="true" [size]="'medium'" [staticColor]="'ok'" [rating]="4.63"></star-rating-comp>
+                      <small class="text-muted">(140)</small>
+                    </div>
+                    <span fxFlex></span>
+                    <button mat-icon-button>
+                      <mat-icon>playlist_add</mat-icon>
+                    </button>
+                    <button mat-icon-button>
+                      <mat-icon>favorite</mat-icon>
+                    </button>
+                  </div>
+
+                  <div>
+                    <ul>
+                      <li>
+                        <mat-icon>check</mat-icon> Heavy duty</li>
+                      <li>
+                        <mat-icon>check</mat-icon> Water resistance</li>
+                      <li>
+                        <mat-icon>check</mat-icon> Clean design</li>
+                      <li>
+                        <mat-icon>check</mat-icon> High quality raw materials</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- End Product -->
+
+          <div class="products-pagination">
+            <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+          </div>
+
+        </div>
+        <!-- End Products container -->
+      </div>
+
+    </div>
+  </mat-sidenav-container>
+</div>

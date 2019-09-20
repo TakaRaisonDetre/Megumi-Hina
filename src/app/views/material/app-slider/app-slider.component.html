@@ -1,0 +1,43 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">Slider</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    <div class="pb-1">
+      <h6>Default</h6>
+      <mat-slider [style.width]="'300px'"></mat-slider>
+    </div>
+    <div class="pb-1">
+      <h6>Thumb Label</h6>
+      <mat-slider 
+      color="primary"
+      [style.width]="'300px'"
+      [thumbLabel]="true"></mat-slider>
+    </div>
+    <div class="pb-1">
+      <h6>Step</h6>
+      <mat-slider 
+      [style.width]="'300px'"
+      [step]="5"></mat-slider>
+    </div>
+    <div class="pb-1">
+      <h6>Invert</h6>
+      <mat-slider 
+      [style.width]="'300px'"
+      [invert]="true"></mat-slider>
+    </div>
+    <div class="pb-1">
+      <h6>Vertical</h6>
+      <mat-slider 
+      [style.width]="'300px'"
+      [vertical]="true"></mat-slider>
+    </div>
+    <div class="pb-1">
+      <h6>Disabled</h6>
+      <mat-slider 
+      [style.width]="'300px'"
+      [disabled]="true"></mat-slider>
+    </div>
+  </mat-card-content>
+</mat-card>

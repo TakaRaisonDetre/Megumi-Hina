@@ -1,0 +1,98 @@
+<div *ngIf="pdt" fxLayout="row wrap">
+  <div fxFlex="100" fxFlex.gt-md="300px" fxFlex.gt-sm="50">
+    <mat-card class="profile-sidebar mb-1 pb-0">
+      <div>
+        <img width=100% [src]="pdt.downloadURL || '../../../assets/images/mock-logo-2.png'" alt="">
+      </div>
+      <div class="profile-title text-center mb-1">
+        <div class="subtitle mb-05">{{pdt.name}}</div>
+        <div class="subtitle mb-05">販売価格：{{pdt.price | currency : 'JPY': true}}</div>
+        <div class="text-muted">{{pdt.description}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <br>
+      <div style="background-color:black" class="profile-title text-center mb-1">
+          <div class="text-muted">蒔絵師名：{{pdt.makie_artist}}</div>
+          <div class="subtitle mb-05">蒔絵師代金：{{pdt.makie_cost | currency : 'JPY': true}}</div>
+          <div class="text-muted">塗装業者:{{pdt.coloring_vender}}</div>
+          <div class="subtitle mb-05">塗装コスト：{{pdt.coloring_cost | currency : 'JPY': true}}</div>
+        </div>
+      <div class="profile-actions mb-1" fxLayoutAlign="center center">
+        <button (click)="openGOGSPopUp({}, true)" mat-raised-button color="primary">生地原価</button>
+        <span fxFlex="8px"></span>
+        
+        <button mat-raised-button color="accent">戻る</button>
+      </div>
+     
+    </mat-card>
+
+   
+ 
+  </div>
+
+<!-- Profile Views -->
+  <div fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="calc(100% - 300px)">
+    <mat-card class="p-0">
+      <mat-tab-group>
+        <mat-tab label="生地コスト情報">
+          <mat-card-content class="mt-1">
+            
+            <ngx-datatable 
+            class="material ml-0 mr-0"
+            [rows]="items"
+            [columnMode]="'flex'"
+            [headerHeight]="40"
+            [footerHeight]="40"
+            [limit]="15"
+            [rowHeight]="'auto'">
+           
+
+            <ngx-datatable-column name="生地名" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                　{{ row?.name }}
+              </ng-template>
+            </ngx-datatable-column>
+          
+            <ngx-datatable-column name="記述" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.description}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="仕入業者" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.vendor}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="色味属性" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.original_color }}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="原価価格" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.item_cost | currency : 'JPY': true}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="写真・追加・削除" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+               
+                <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="openGOGSPopUp(row)"><mat-icon>edit</mat-icon></button>
+                <button mat-icon-button mat-sm-button color="warn" (click)="deleteItem(row)"><mat-icon>delete</mat-icon></button>
+              </ng-template>
+            </ngx-datatable-column>
+            <mat-divider></mat-divider>
+          </ngx-datatable>
+
+          </mat-card-content>
+        </mat-tab>
+     
+       
+      </mat-tab-group>
+    </mat-card>
+
+  </div>
+</div>

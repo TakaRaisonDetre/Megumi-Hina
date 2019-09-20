@@ -1,0 +1,15 @@
+<mat-card class="p-0">
+  <mat-sidenav-container class="chat-container">
+    <!-- Left sidebar -->
+    <mat-sidenav class="chat-sidenav" [opened]="isSidenavOpen" mode="side">
+      <app-chat-left-sidenav></app-chat-left-sidenav>
+    </mat-sidenav>
+
+    <!-- Right side -->
+    <div class="chats-wrap">
+      <!-- Right side topbar -->
+      <app-chat-contents [matSidenav]="sideNav"></app-chat-contents>
+
+    </div>
+  </mat-sidenav-container>
+</mat-card>

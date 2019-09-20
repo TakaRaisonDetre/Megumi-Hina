@@ -1,0 +1,2 @@
+crud-product - 商品登録テーブル
+sales-order - 発注関連

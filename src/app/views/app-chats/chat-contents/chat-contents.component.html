@@ -1,0 +1,117 @@
+<mat-toolbar color="primary" class="chat-toolbar">
+    <!-- sidebar toggle button -->
+    <button 
+    mat-icon-button
+    [style.alignSelf]="'center'"
+    class="mr-1" 
+    (click)="matSidenav.toggle()"><mat-icon>short_text</mat-icon>
+    </button>
+    
+    <!-- Selected active user -->
+    <div 
+      class="active-chat-user" 
+      fxLayout="row" 
+      fxLayoutAlign="start center"
+      *ngIf="activeContact.id"
+    >
+      <a 
+        [ngClass]="{online: activeContact.status === 'online'}" 
+        class="toolbar-avatar mr-1"
+      >
+        <img [src]="activeContact.avatar" alt="">
+        <span class="status-dot"></span>
+      </a>
+      <div fxLayout="column">
+        <h6 class="m-0 font-normal fz-1">{{activeContact.name}}</h6>
+      </div>
+    </div>
+
+    <!-- Right side top menu -->
+    <span fxFlex></span>
+    <button 
+    [style.alignSelf]="'center'" 
+    mat-icon-button 
+    [matMenuTriggerFor]="toolbarDDMenu" 
+    class="topbar-button-right hidden-on-open">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #toolbarDDMenu="matMenu">
+        <button mat-menu-item><mat-icon>account_circle</mat-icon>Contact info</button>
+        <button mat-menu-item><mat-icon>volume_mute</mat-icon>Mute</button>
+        <button mat-menu-item><mat-icon>delete</mat-icon>Clear chat</button>
+    </mat-menu>
+</mat-toolbar>
+
+<div *ngIf="chatCollection">
+    <!-- Main chat body -->
+    <div class="conversations-hold" [perfectScrollbar]>
+
+      <!-- single chat item -->
+      <div class="single-conversation" 
+        fxLayout="row" 
+        *ngFor="let chat of chatCollection?.chats"
+        [ngClass]="{sender: chat.contactId === activeContact.id, me: chat.contactId !== activeContact.id}"
+      >
+
+        <a 
+          *ngIf="chat.contactId !== activeContact.id" 
+          href="" 
+          class="toolbar-avatar"
+          [ngClass]="{online: user.status === 'online'}"
+        >
+          <img [src]="user?.avatar" [alt]="user?.name">
+          <span class="status-dot"></span>
+        </a>
+
+        <a 
+          *ngIf="chat.contactId === activeContact.id" 
+          href="" 
+          class="toolbar-avatar"
+          [ngClass]="{online: activeContact.status === 'online'}"
+        >
+          <img [src]="activeContact?.avatar" [alt]="activeContact?.name">
+          <span class="status-dot"></span>
+        </a>
+
+        <div>
+          <h5 *ngIf="chat.contactId === activeContact.id" class="chat-username text-muted">{{activeContact?.name}}</h5>
+          <h5 *ngIf="chat.contactId !== activeContact.id" class="chat-username text-muted">{{user?.name}}</h5>
+
+          <div class="conversation-msg">
+            {{chat.text}}
+          </div>
+          <p class="chat-date text-muted">{{chat.time | relativeTime}}</p>
+        </div>
+      </div>
+
+    </div>
+    <mat-divider></mat-divider>
+
+    <!-- Input box and send button -->
+    <div class="chat-input-actions">
+      <form 
+        #msgForm="ngForm" 
+        class="inputForm" 
+        (ngSubmit)="sendMessage($event)" 
+        (keyup.enter)="sendMessage($event)"
+        fxLayout="row"
+      >
+        <mat-form-field class="full-width mr-1">
+          <textarea
+          matInput
+          #msgInput
+          ngModel
+          placeholder="Type your message"
+          name="message"
+          class="inputText"
+          value=""></textarea>
+        </mat-form-field>
+        <button mat-fab color="primary" type="submit"><mat-icon>send</mat-icon></button>
+      </form>
+    </div>
+</div>
+
+
+<div class="chat-intro" *ngIf="!chatCollection" fxLayout="column" fxLayoutAlign="center center">
+  <h6>Select a contact and start chat</h6>
+</div>

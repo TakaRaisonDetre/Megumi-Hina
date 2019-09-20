@@ -1,0 +1,17 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">Autocomplete</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput placeholder="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+    </mat-form-field>
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let state of filteredStates | async" [value]="state">
+        {{ state }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-card-content>
+</mat-card>
